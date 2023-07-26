@@ -55,7 +55,7 @@ Si te gustó este proyecto y quisieras apoyarlo, cualquiera de estas acciones es
 
 ## Autor 👥
 
-Las colaboracion principal fue realizada por:
+La colaboración principal fue realizada por:
 
 * **[Fabián Banderas](https://github.com/fabianbanderasb)**: Ejecución y modificación.
 
