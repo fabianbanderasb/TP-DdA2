@@ -61,7 +61,7 @@ La colaboración principal fue realizada por:
 
 ## Licencia 📄
 
-Este proyecto está bajo Licencia ([MIT](https://github.com/fabianbanderasb/cibersecurity/blob/main/LICENSE.md)). Puedes ver el archivo [LICENSE.md](LICENSE.md) para más detalles sobre el uso de este material.
+Este proyecto está bajo Licencia ([MIT](https://github.com/fabianbanderasb/TP-DdA2/blob/main/LICENSE.md)). Puedes ver el archivo [LICENSE.md](https://github.com/fabianbanderasb/TP-DdA2/blob/main/LICENSE.md) para más detalles sobre el uso de este material.
 
 ---
 
