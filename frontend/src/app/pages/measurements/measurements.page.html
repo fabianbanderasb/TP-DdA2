@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="analytics-outline" size="large" color="primary"></ion-icon>
+    </ion-buttons>
+    <ion-title>Mediciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-list lines="inset">
+    <ng-container *ngIf="measurements$ | async as measurements">
+      <ng-container *ngIf="measurements.length; else noDataTemplate">
+        <ng-container *ngFor="let measurement of measurements">
+          <ion-item>
+            <ion-label>
+              {{measurement.date  | date:"hh:mm:ss dd/MM/yy" }} - Valor: {{measurement.value | measurementUnit }}
+            </ion-label>
+          </ion-item>
+        </ng-container> 
+      </ng-container>
+
+    <ng-template #noDataTemplate>
+      Sin mediciones!
+      <ion-icon name="close-outline"></ion-icon>
+    </ng-template>
+
+    </ng-container>
+    <ng-container *ngIf="(isLoading$ | async) === true">
+    <ion-text>Cargando mediciones...
+      <ion-spinner></ion-spinner></ion-text>
+    </ng-container>
+  </ion-list>
+</ion-content>

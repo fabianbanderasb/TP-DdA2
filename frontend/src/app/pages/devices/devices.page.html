@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="logo-ionic" size="large" color="primary"></ion-icon>
+    </ion-buttons>
+    <ion-title>dam - app</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ng-container *ngIf="devices$ | async as devices">
+      <ng-container *ngIf="devices.length; else noDataTemplate">
+        <ng-container *ngFor="let device of devices">
+          <ion-item button detail="true" [routerLink]="['/devices', device.id]">
+            <ion-label>
+              <h3><ion-icon name="water-outline"></ion-icon> {{device.name}}</h3>
+              <p>{{device.lastMeasurement?.date  | date:"hh:mm:ss dd/MM/yy" }} - Last value: {{device.lastMeasurement?.value | measurementUnit }}</p>
+            </ion-label>
+          </ion-item>
+        </ng-container> 
+      </ng-container>
+
+    <ng-template #noDataTemplate>
+    <ion-text>Sin dispositivos!</ion-text>
+      <ion-icon name="close-outline"></ion-icon>
+    </ng-template>
+
+    </ng-container>
+    <ng-container *ngIf="(isLoading$ | async) === true">
+      <ion-text>Cargando dispositivos...
+        <ion-spinner></ion-spinner></ion-text>
+    </ng-container>
+  </ion-list>
+</ion-content>

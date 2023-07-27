@@ -1,0 +1,42 @@
+<ion-content [fullscreen]="true">
+  <ion-list lines="none">
+    <ng-container *ngIf="device$ | async as device">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{device.name}}</ion-card-title>
+          <ion-card-subtitle>{{device.location}}</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <p>Estado de la válvula: <span>{{ device.valveStatus? 'Opened' : 'Closed' }}</span></p>
+          <p>{{device.lastMeasurement?.date  | date:"hh:mm:ss dd/MM/yy" }} - Último valor: <span class="measurement-value" [appStatusHighlight]="device.lastMeasurement?.value!"> {{device.lastMeasurement?.value | measurementUnit }} </span></p>
+        </ion-card-content>
+      
+        <ion-button fill="outline" [routerLink]="['/logs', device.valveId]">
+          <ion-icon slot="start" name="document-lock-outline"></ion-icon>
+          Registros</ion-button>
+        <ion-button fill="solid" [routerLink]="['/measurements', device.id]">
+          <ion-icon slot="start" name="analytics-outline"></ion-icon>
+          Mediciones</ion-button>
+      </ion-card>
+
+      <ng-container *ngIf="device.lastMeasurement">
+        <highcharts-chart class ="chart" [Highcharts]="Highcharts" [options]="chartOptions">
+
+        </highcharts-chart>
+      
+
+      </ng-container>
+      
+
+        <ion-button (click)="toggleValve(device.valveId)" expand="block">{{ device.valveStatus? 'Close' : 'Open' }} Válvula</ion-button>
+
+
+    </ng-container>
+    <ng-container *ngIf="(isLoading$ | async) === true">
+      <ion-text>Cargando datos del dispositivo...<ion-spinner></ion-spinner></ion-text>
+    </ng-container>
+  </ion-list>
+</ion-content>
+
+
